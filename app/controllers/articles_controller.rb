@@ -12,12 +12,12 @@ class ArticlesController < ApplicationController
 
   #GET/articles/new
   def new
-    @article = Article.new(article_params)
-    if @article.save
-      redirect_to @article, notice: "Article was successfully created."
-    else
-      render :new, status:unprocessable_entitiy
-    end
+    @article = Article.new
+  end
+
+  #GET/article/1/edit
+  def edit
+    @article = Article.find(params[:id])
   end
 
   #POST/articles
@@ -27,6 +27,12 @@ class ArticlesController < ApplicationController
 
   #PATCH/articles/1
   def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+     redirect_to @article, notice: "Article was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   #DELETE/articles/1
@@ -34,8 +40,8 @@ class ArticlesController < ApplicationController
   end
 
   private
-  def article_params
-    params.require(:article).permit(:title, :content)
-  end
+    def article_params
+     params.require(:article).permit(:title, :content)
+    end
 
 end
