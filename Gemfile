@@ -51,4 +51,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Japanese
- gem 'rails-i18n'
+gem 'rails-i18n'
+
+# devise_jabapanese
+gem 'devise-i18n'
