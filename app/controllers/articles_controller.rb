@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 
   #GET/articles
   def index
-    @articles = Article.all
+    @articles = Article.all.page(params[:page])
   end
 
   #GET/articles/1

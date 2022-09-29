@@ -55,3 +55,6 @@ gem 'rails-i18n'
 
 # devise_jabapanese
 gem 'devise-i18n'
+
+# pagination
+gem 'kaminari'
