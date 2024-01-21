@@ -8,10 +8,17 @@ class ArticlesController < ApplicationController
   def show
   end
 
-  def create
-    @article = Article.create!(article_params)
+  def new
+    @article = Ariticle.new
+  end
 
-    render :show
+  def create
+    @article = Article.new(article_params)
+    if @article.save
+      redirect_to @article, notice: "Article was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -28,7 +35,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params[:article].permit(:title, :content)
+    params.require(:article).permit(:title, :content)
   end
 
   def set_article
